@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  app:
+    build: .
+
+    ports:
+      - '3000:80'
+    environment:
+      - DB_URL=mongodb://localhost:27017
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+
+  mongodb:
+    image: mongo
+    ports:
+      - '27017:27017'
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
